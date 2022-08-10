@@ -14,7 +14,7 @@ import reactor.core.publisher.Mono;
 import java.util.Date;
 
 @RestController
-@RequestMapping("/api/productos")
+@RequestMapping("/api/products")
 public class ProductoRestController {
 	@Autowired
 	private ProductDao dao;

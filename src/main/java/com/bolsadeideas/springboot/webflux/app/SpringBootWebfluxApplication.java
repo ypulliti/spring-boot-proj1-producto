@@ -32,14 +32,14 @@ public class SpringBootWebfluxApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		
-		mongoTemplate.dropCollection("bankclients").subscribe();
+		mongoTemplate.dropCollection("bankproduct").subscribe();
 
 		Flux.just(
-					new BankProduct("credito empresarial", "Credito", 0, 0),
-					new BankProduct("credito personal", "credito",0, 0),
-					new BankProduct("ahorro", "cuenta bancaria", 0, 30),
-					new BankProduct("cuenta corriente", "Cuenta bancaria", 10, -1),
-					new BankProduct("plazo fijo", "Cuenta bancaria", 0, 1)
+					new BankProduct("credito empresarial", "credito", "1", "0", "0"),
+					new BankProduct("credito personal", "credito", "2","0", "0"),
+					new BankProduct("ahorro", "cuenta bancaria", "3", "0", "30"),
+					new BankProduct("cuenta corriente", "cuenta bancaria", "4", "10", "-1"),
+					new BankProduct("plazo fijo", "cuenta bancaria", "5", "0", "1")
 				)
 		.flatMap(c -> {
 			c.setCreateAt(new Date());
