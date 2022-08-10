@@ -18,9 +18,7 @@ import java.util.Date;
 public class ProductoRestController {
 	@Autowired
 	private ProductDao dao;
-	
 	private static final Logger log = LoggerFactory.getLogger(ProductoRestController.class);
-	
 	@GetMapping
 	public Flux<BankProduct> index(){
 
