@@ -23,9 +23,9 @@ public class ProductoRestController {
 	public Flux<BankProduct> index(){
 
         Flux<BankProduct> productos = dao.findAll()
-        		.map(producto -> {
-        			producto.setName(producto.getName().toUpperCase());
-        			return producto;
+        		.map(c -> {
+        			c.setName(c.getName().toUpperCase());
+        			return c;
         			})
         		.doOnNext(prod -> log.info(prod.getName()));
         
@@ -33,17 +33,16 @@ public class ProductoRestController {
 	}
 
 	@GetMapping("/{id}")
-	public Mono<BankProduct> show(@PathVariable String id){
-		
-		/* Mono<Producto> producto = dao.findById(id); */
-		
+	public Mono<BankProduct> show(@PathVariable String id)
+	{
 		Flux<BankProduct> productos = dao.findAll();
 		
-		Mono<BankProduct> producto = productos
+		Mono<BankProduct> bProd = productos
 				.filter(p -> p.getId().equals(id))
 				.next()
 				.doOnNext(prod -> log.info(prod.getName()));
 				
-		return producto;
+		return bProd;
 	}
 }
+
